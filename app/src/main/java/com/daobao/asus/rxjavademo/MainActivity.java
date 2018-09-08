@@ -8,9 +8,7 @@ import android.widget.TextView;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnClick(View view) {
-//        Observable<String> observable = getObservable();
-//        Observer<String> observer = getObserver();
-//        observable.subscribe(observer);
         Observable<String> observable = getObservable();
-        observable.subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                Log.d(TAG, "accept:");
-                mTextView.setText(s);
-            }
-        });
+        Observer<String> observer = getObserver();
+        observable.subscribe(observer);
+//        Observable<String> observable = getObservable();
+//        observable.subscribe(new Consumer<String>() {
+//            @Override
+//            public void accept(String s) throws Exception {
+//                Log.d(TAG, "accept:");
+//                mTextView.setText(s);
+//            }
+//        });
     }
 
     public Observable<String> getObservable(){
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 //                //emitter.onComplete();
 //            }
 //        });
-
+//
 //        return Observable.fromCallable(new Callable<String>() {
 //            @Override
 //            public String call() throws Exception {
